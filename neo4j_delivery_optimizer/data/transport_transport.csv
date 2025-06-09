@@ -1,0 +1,4 @@
+source,id,cost,state,name,transport
+2,3,10,idle,conveyor3,4
+3,4,13,idle,conveyor4,4
+4,5,10,idle,conveyor5,5

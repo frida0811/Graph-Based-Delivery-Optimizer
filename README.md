@@ -72,7 +72,7 @@ neo4j_delivery_optimizer/
 
 ---
 
-## 👨‍💻 Author Contribution (Linzhou Zhao)
+## 👨‍💻 Author Contribution (Frida YuZhao)
 
 - Frontend + basic HTML interface
 - Designed data schema and graph structure in Neo4j

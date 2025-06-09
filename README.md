@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9-blue.svg">
+  <img src="https://img.shields.io/badge/Neo4j-5.11-brightgreen">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
+  <img src="https://img.shields.io/badge/Status-Completed-success">
+</p>
 
 # 📦 Graph-Based Delivery Optimizer using Neo4j
 

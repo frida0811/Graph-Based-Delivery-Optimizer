@@ -1,0 +1,41 @@
+
+MATCH (n)
+DETACH DELETE n;
+
+LOAD CSV WITH HEADERS FROM 'file:///source_node.csv' AS row
+MERGE (e:source {id: row.id, name: row.name, state: row.state})
+RETURN count(e);
+
+LOAD CSV WITH HEADERS FROM 'file:///transport.csv' AS row
+MERGE (e:transport {id: row.id, name: row.name, state: row.state})
+RETURN count(e);
+
+LOAD CSV WITH HEADERS FROM 'file:///desti.csv' AS row
+MERGE (e:destination {id: row.id, name: row.name, state: row.state})
+RETURN count(e);
+
+LOAD CSV WITH HEADERS FROM 'file:///source_transport.csv' AS row
+MATCH (e:source {id: row.source})
+MATCH (c:transport {id: row.transport})
+MERGE (e)-[:convey {id: row.id, cost: toInteger(row.cost), state: row.state, name: row.name}]->(c)
+RETURN *;
+
+LOAD CSV WITH HEADERS FROM 'file:///transport_transport.csv' AS row
+MATCH (e:transport {id: row.source})
+MATCH (c:transport {id: row.transport})
+MERGE (e)-[:convey {id: row.id, cost: toInteger(row.cost), state: row.state, name: row.name}]->(c)
+RETURN *;
+
+LOAD CSV WITH HEADERS FROM 'file:///transport_destination.csv' AS row
+MATCH (e:transport {id: row.source})
+MATCH (c:destination {id: row.transport})
+MERGE (e)-[:convey {id: row.id, cost: toInteger(row.cost), state: row.state, name: row.name}]->(c)
+RETURN *;
+
+MATCH (n:transport {id:'4'})
+SET n:converter
+RETURN n.name, labels(n) AS labels;
+
+MATCH (n:transport {id:'5'})
+SET n:diverter
+RETURN n.name, labels(n) AS labels;
